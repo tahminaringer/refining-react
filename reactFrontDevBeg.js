@@ -27,6 +27,7 @@ greeting('Good morning')
 
 // no arguments
 let gretting = () => alert('Hello Everyone');
+gretting();
 
 //one argument
 let greeting = message => alert(`${message} everyone!`);
@@ -43,3 +44,32 @@ let createBlog = (title, body) => {
   return alert(`${title} - ${body}`);
 }
 createBlog('Blog title', 'Blog body');
+
+// Arrow function and this key word
+let nepal = {
+  mountains: ['Everest', 'Fish Tail', 'Annapurna'],
+  printWithDash: function() {
+    setTimeout(()  => console.log(this.mountains.join(' - ')), 3000)
+  }
+};
+alert(nepal.mountains);
+
+// Destructuring object
+let thingsToDo = {
+  morning: 'Excersise',
+  afternoon: 'Work',
+  evening: 'Code',
+  night: ['Sleep', 'Dream']
+}
+
+let {morning, afternoon} = thingsToDo;
+morning = 'Run';
+console.log(morning, ' - ', afternoon);
+
+let uniStudent = ({name, university}) => {
+   console.log(`${name} from ${university}`)
+}
+uniStudent({
+  name: 'Tahmina',
+  university: 'University of Montana'
+});
