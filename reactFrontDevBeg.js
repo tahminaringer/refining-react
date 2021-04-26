@@ -73,3 +73,105 @@ uniStudent({
   name: 'Tahmina',
   university: 'University of Montana'
 });
+
+// array destructuring
+let [, ,firstMountain] = ['Everest', 'Fish Tail', Annapurna];
+console.log(firstName)
+
+//Restructure Array
+var name = 'Everest';
+var height = 8848;
+var output = function () {
+  console.log(`Mt. ${this.name} is ${this.height} meter tall`);
+}
+
+var adventureClibing = { name, height, output };
+adventureClibing.output();
+
+//rewrite
+var adventureClibing = {
+  name: 'Everest',
+  height: 8848,
+  output() {
+    console.log(`Mt. ${this.name} is ${this.height} meter tall`);
+  }
+};
+adventureClibing.output();
+
+//spread and rest opperators
+var mountains = ['Everest', 'Fish Tail', 'Annapurna'];
+var mountainsFromJapan = ['Fugi'];
+
+var allMountains = [...mountains, ...mountainsFromJapan];
+console.log(allMountains);
+
+var day = {
+  breakfast: 'toast',
+  lunch: 'salad',
+}
+
+var night = {
+  dinner: 'soup'
+}
+
+var picnic = {...day, ...night};
+console.log(picnic);
+
+// rest
+var rivers = ['Sunkoshi', 'Tamakoshhi', 'Saptokoshi'];
+var[first, ...rest] = rivers;
+console.log(first);
+console.log(rest);
+
+//Class constructor Super
+function Holiday(destination, days) {
+  this.destination = destination;
+  this.days = days;
+}
+
+Holiday.prototype.info = function() {
+  console.log(this.destination + " | " + this.days + " days");
+}
+
+var nepal = new Holiday('Nepal', 30);
+console.log(nepal.info());
+
+//ES6
+class Holiday {
+  constructor(destination, days) {
+    this.destination = destination;
+    this.days = days;
+  }
+  info() {
+    console.log(`${this.destination} will take ${this.days} days.`)
+  }
+}
+
+const trip = new Holiday('Kathmandu, Nepal', 30)
+console.log(trip.info());
+
+//Extend
+//parent class ---- Super Class
+class Holiday {
+  constructor(destination, days) {
+    this.destination = destination;
+    this.days = days;
+  }
+  info() {
+    console.log(`${this.destination} will take ${this.days} days.`)
+  }
+}
+
+//Sub Class
+class Expedition extends Holiday {
+  constructor(destination, days, gear) {
+    super(destination, days);
+    this.gear = gear;
+  }
+  info(){
+    super.info();
+    console.log(`Bring your ${this.gear.join(' and your')}`);
+  }
+}
+const tripWithGear = new Expedition('Everest', 30, ['Sunglasses', 'Flags', 'Camera']);
+tripWithGear.info();
