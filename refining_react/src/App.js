@@ -11,6 +11,8 @@ class App extends Component {
       users: [],
       loading: false
     };
+    //bind
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getUsers() {
@@ -21,10 +23,16 @@ class App extends Component {
     //console log to check for api call
     // .then(response => console.log(response));
       this.setState({
-        users: response.data.results,
+        users: [...this.state.users, ...response.data.results],
         loading: false
       })
     );
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.getUsers();
+    console.log('more users loaded');
   }
 
   componentWillMount(){
@@ -32,15 +40,19 @@ class App extends Component {
   }
 
   render() {
+    const {loading, users} = this.state;
     return (
     <div className="App">
-      {!this.state.loading ? (
-        this.state.users.map(user => (
-      <div>
-        <h3>{user.name.first} {user.name.last}</h3>
+        <form onSubmit ={this.handleSubmit}>
+          <imput type="submit" value="load users" />
+        </form>
+        <hr />
+      {!loading ? (
+        users.map(user => (
+      <div key={user.id.value}>
+        <h3 style={{color: 'red'}}>{user.name.first} {user.name.last}</h3>
         <p>{user.cell}</p>
         <p>{user.email}</p>
-        <hr />
       </div>
       ))
       ) : (
